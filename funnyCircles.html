@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    tạo hình ảnh vs CANVAS-->
+<canvas id="mycanvas"  width="1368" height="768" style="border: 1px solid wheat;"></canvas>
+<script>
+    function Circle(x,y,radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+    // sử dụng hàm Math.random() để sinh một bán kính ngẫu nhiên nằm trong khoảng từ 0-80.
+    function getRandomHex() {
+        return Math.floor(Math.random()*255);
+    }
+    // random nhieu mau khac nhau
+    function getRandomColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + ',' + green+ ',' + blue + ")";
+    }
+    // in ra mot hinh tron
+    function creatCircle() {
+        let coNextCanvas = document.getElementById('mycanvas').getContext("2d");
+        // sử dụng hàm Math.random() để sinh một bán kính ngẫu nhiên nằm trong khoảng từ 0-80.
+        let radius = Math.floor(Math.random()*80);
+        let color = getRandomColor();
+        let x = Math.random()* window.innerWidth;
+        let y = Math.random()* window.innerHeight;
+        let circle = new Circle(x,y,radius);
+        coNextCanvas.beginPath();
+        coNextCanvas.arc(circle.x, circle.y, circle.radius, 0, 2* Math.PI);
+        coNextCanvas.fillStyle = color;
+        coNextCanvas.fill();
+    }
+    // tao ra 50 hinh tron
+    function themNhieuHinhTron() {
+        for (i = 0; i < 50; i++){
+            creatCircle();
+        }
+    }
+    themNhieuHinhTron();
+</script>
+</body>
+</html>
